@@ -11,26 +11,15 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
-"Plugin 'w0ng/vim-hybrid'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'einars/js-beautify'
 Plugin 'joonty/vim-phpqa.git'
 Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'Lokaltog/vim-easymotion.git'
-"Plugin 'majutsushi/tagbar'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'rking/ag.vim.git'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-"Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
-"Plugin 'ryanoasis/vim-devicons'
-"Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'tpope/vim-fugitive.git'
-"Plugin 'ajh17/VimCompletesMe'
-"Plugin 'Shougo/deoplete.nvim'
-"Plugin 'roxma/nvim-yarp'
-"Plugin 'roxma/vim-hug-neovim-rpc'
 Plugin 'tpope/vim-surround.git'
 Plugin 'elzr/vim-json.git'
 Plugin 'tobyS/vmustache'
@@ -40,8 +29,6 @@ Plugin 'alvan/vim-closetag'
 Plugin 'tmhedberg/matchit'
 Plugin 'phpactor/ncm-phpactor'
 Plugin 'ervandew/supertab'
-"Plugin 'vim-scripts/YankRing.vim'
-"Plugin 'lumiliet/vim-twig'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,24 +36,10 @@ filetype plugin indent on    " required
 
 " }}}
 
-" {{{ Functions
-"function! NumberToggle()
-    "if(&relativenumber == 1)
-        "set nonumber
-        "set norelativenumber
-    "elseif(&relativenumber == 0 && &number == 0)
-        "set number
-    "elseif(&relativenumber == 0 && &number == 1)
-        "set relativenumber
-    "endif
-"endfunc
-" }}}
-
 " {{{ Window and editor setup
 
 " Display line numbers and rulers.
 set number
-"set relativenumber
 set norelativenumber
 set ruler
 syntax on
@@ -75,7 +48,6 @@ syntax on
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8,latin1
-"set ff=unix
 
 " Whitespace features
 set tabstop=4
@@ -129,10 +101,7 @@ set synmaxcol=500
 
 " {{{ Colors
 
- set background=dark
- "set t_Co=256
- "let g:hybrid_custom_term_colors = 1
- "colorscheme hybrid
+set background=dark
 
 " }}}
 
@@ -253,12 +222,6 @@ let g:ale_linters = {
 " }}}
 
 " {{{ Autocommands
-"
-" Save on blur
-" au FocusLost * :wa
-
-" Save on blur for terminal vim
-" au CursorHold,CursorHoldI * silent! wa
 
 " PHP compplete
 " Enable omni completion.
@@ -294,18 +257,6 @@ let g:airline_extensions = []
 
 " nerdtree color
 :hi Directory guifg=#FF0000 ctermfg=red
-
-" deoplete
-"let g:deoplete#enable_at_startup = 1
-" tab deoplete
-"inoremap <silent><expr> <TAB>
-    "\ pumvisible() ? "\<C-n>" :
-    "\ <SID>check_back_space() ? "\<TAB>" :
-    "\ deoplete#mappings#manual_complete()
-"function! s:check_back_space() abort "{{{
-    "let col = col('.') - 1
-    "return !col || getline('.')[col - 1]  =~ '\s'
-"endfunction"}}}
 
 "
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
