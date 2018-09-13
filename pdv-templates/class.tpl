@@ -1,7 +1,7 @@
 /**
  * Class: {{name}}
  *
- * @author    Lubos Remplik <lubos@on-idle.com>
+ * @author    Ondřej Nedvídek <ondra@on-idle.com>
  * @copyright on-IDLE Ltd.
  * @license   https://www.opensource.org/licenses/mit-license.php MIT License
  * @link      https://www.on-idle.com
