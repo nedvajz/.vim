@@ -27,7 +27,8 @@ Plugin 'tobyS/pdv'
 Plugin 'w0rp/ale'
 Plugin 'alvan/vim-closetag'
 Plugin 'tmhedberg/matchit'
-Plugin 'phpactor/ncm-phpactor'
+Plugin 'shawncplus/phpcomplete.vim'
+Plugin 'phpactor/phpactor'
 Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
@@ -86,7 +87,7 @@ set noswapfile
 set undofile
 set undodir=~/.vim/undo
 
-" Tab completion for filenames and other command line features.
+" Tab completion for filenames and other command line features. - youtube video
 "set wildmenu
 "set wildmode=list:longest,list:full
 "set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*.pyc,node_modules/*
@@ -96,6 +97,9 @@ set tags=tags;
 
  " fix for slow vim, syntax
 set synmaxcol=500
+
+" Search down into subfolders (ctrlp alternative) - youtube video
+"set path+=**
 
 " }}}
 
@@ -229,10 +233,11 @@ autocmd FileType css,less,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " PHP Actor
-autocmd FileType php setlocal omnifunc=phpactor#Complete
+"autocmd FileType php setlocal omnifunc=phpactor#Complete
+"let g:phpactorOmniError = v:true
 
 " SuperTab & omni completion
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
