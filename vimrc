@@ -14,7 +14,8 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'einars/js-beautify'
-Plugin 'joonty/vim-phpqa.git'
+"Plugin 'joonty/vim-phpqa.git'
+Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'rking/ag.vim.git'
@@ -25,10 +26,14 @@ Plugin 'elzr/vim-json.git'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
 Plugin 'w0rp/ale'
-Plugin 'alvan/vim-closetag'
+"Plugin 'alvan/vim-closetag'
 Plugin 'tmhedberg/matchit'
 Plugin 'shawncplus/phpcomplete.vim'
-Plugin 'phpactor/phpactor'
+"Plugin 'Valloric/YouCompleteMe'
+"Plugin 'phpactor/phpactor'
+"Plugin 'ncm2/ncm2'
+"Plugin 'roxma/nvim-yarp'
+"Plugin 'phpactor/ncm2-phpactor'
 Plugin 'ervandew/supertab'
 
 " All of your Plugins must be added before the following line
@@ -96,7 +101,7 @@ set undodir=~/.vim/undo
 set tags=tags;
 
  " fix for slow vim, syntax
-set synmaxcol=500
+set synmaxcol=1000
 
 " Search down into subfolders (ctrlp alternative) - youtube video
 "set path+=**
@@ -223,6 +228,19 @@ let g:ale_linters = {
 \   'php': ['php -l'],
 \}
 
+" Syntastic configuration
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" Syntastic configuration for PHP
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_phpcs_exec = './bin/phpcs'
+let g:syntastic_php_phpcs_args = '--standard=psr2'
+let g:syntastic_php_phpmd_exec = './bin/phpmd'
+let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+
 " }}}
 
 " {{{ Autocommands
@@ -235,12 +253,19 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
+" YouCompleteMe
+"let g:ycm_min_num_of_chars_for_completion = 100
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+
+
 " PHP Actor
 "autocmd FileType php setlocal omnifunc=phpactor#Complete
 "let g:phpactorOmniError = v:true
 
 " SuperTab & omni completion
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" SuperTab & ycm completion
+"let g:SuperTabDefaultCompletionType = '<C-n>' 
 
 " Remember last location in file
 if has("autocmd")
