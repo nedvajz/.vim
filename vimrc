@@ -25,7 +25,7 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'elzr/vim-json.git'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
-Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale'
 "Plugin 'alvan/vim-closetag'
 Plugin 'tmhedberg/matchit'
 Plugin 'shawncplus/phpcomplete.vim'
@@ -35,6 +35,7 @@ Plugin 'shawncplus/phpcomplete.vim'
 "Plugin 'roxma/nvim-yarp'
 "Plugin 'phpactor/ncm2-phpactor'
 Plugin 'ervandew/supertab'
+Plugin 'mattn/emmet-vim' "html plugin
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -222,17 +223,19 @@ map gp :Gpush<CR>
 map gf :Gfetch<CR>
 
 " Ale
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_linters = {
-\   'php': ['php -l'],
-\}
+"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+"nmap <silent> <C-j> <Plug>(ale_next_wrap)
+"let g:ale_linters = {
+"\   'php': ['php -l'],
+"\}
 
 " Syntastic configuration
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_enable_signs = 0
+let g:syntastic_enable_balloons = 0
 
 " Syntastic configuration for PHP
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
@@ -240,6 +243,13 @@ let g:syntastic_php_phpcs_exec = './bin/phpcs'
 let g:syntastic_php_phpcs_args = '--standard=psr2'
 let g:syntastic_php_phpmd_exec = './bin/phpmd'
 let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
+
+" see :h syntastic-loclist-callback
+function! SyntasticCheckHook(errors)
+    if !empty(a:errors)
+        let g:syntastic_loc_list_height = min([len(a:errors), 10])
+    endif
+endfunction
 
 " }}}
 
