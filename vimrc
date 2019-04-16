@@ -16,7 +16,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'einars/js-beautify'
 "Plugin 'joonty/vim-phpqa.git'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf.vim'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'rking/ag.vim.git'
 Plugin 'scrooloose/nerdtree'
@@ -93,19 +94,11 @@ set noswapfile
 set undofile
 set undodir=~/.vim/undo
 
-" Tab completion for filenames and other command line features. - youtube video
-"set wildmenu
-"set wildmode=list:longest,list:full
-"set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*,*.pyc,node_modules/*
-
 " ctags optimization
 set tags=tags;
 
- " fix for slow vim, syntax
+" fix for slow vim, syntax
 set synmaxcol=1000
-
-" Search down into subfolders (ctrlp alternative) - youtube video
-"set path+=**
 
 " }}}
 
@@ -116,13 +109,6 @@ set background=dark
 " }}}
 
 " {{{ Plugins config
-
-" CtrlP configuration
-let g:ctrlp_working_path_mode = 2
-let g:ctrlp_match_window_reversed = 0
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-let g:ctrlp_max_files = 100000
-let g:ctrlp_max_depth = 40
 
 " PHP QA
 let g:phpqa_messdetector_autorun = 0
@@ -135,6 +121,19 @@ let g:phpqa_codesniffer_cmd = '/home/ondra/.composer/vendor/bin/phpcs'
 " PDV settings
 let g:pdv_template_dir = "/home/ondra/.vim/pdv-templates"
 
+" higlight search
+:set hlsearch
+
+" horizontal split styling
+:set t_Co=1024
+let g:airline_theme='sol'
+let g:airline_extensions = []
+
+" nerdtree color
+:hi Directory guifg=#FF0000 ctermfg=red
+
+"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
 " }}}
 
 " {{{ Filetypes
@@ -169,9 +168,6 @@ imap <C-Space> <C-x><C-o>
 imap <C-j> <Down>
 imap <C-k> <Up>
 
-" NeoComplete
-"imap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Leader mapping
 map <Leader>h :nohl<CR>
 map <Leader>p :set paste!<BAR>:set paste?<CR>
@@ -183,13 +179,6 @@ map <Leader>t :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-
-" TagbarToggle
-map <Leader>g :TagbarToggle<CR>
-
-" Easy motion
-map <Leader>s <Plug>(easymotion-s1)
-map <Leader><Leader>s <Plug>(easymotion-sn)
 
 " PHP QA
 map <Leader>qf :%!phpcbf --standard=psr2<CR>
@@ -209,25 +198,6 @@ map tk :tabprev<CR>
 map tl :tablast<CR>
 map tn :tabnew<CR>
 map tc :tabclose<CR>
-
-" Git fugitive
-map gs :Gstatus<CR>
-map gd :Gdiff<CR>
-map gw :Gwrite<CR>
-map gr :Gread<CR>
-map gl :Glog<CR>
-map gb :Gblame<CR>
-map gm :Gmove<CR>
-map ge :Gedit<CR>
-map gp :Gpush<CR>
-map gf :Gfetch<CR>
-
-" Ale
-"nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-"nmap <silent> <C-j> <Plug>(ale_next_wrap)
-"let g:ale_linters = {
-"\   'php': ['php -l'],
-"\}
 
 " Syntastic configuration
 let g:syntastic_always_populate_loc_list = 1
@@ -251,6 +221,14 @@ function! SyntasticCheckHook(errors)
     endif
 endfunction
 
+" Fuzzy Finder
+set rtp+=~/.fzf
+nmap <Leader>f :Files<CR>
+nmap <Leader>F :GFiles<CR>
+" ag search over fzf
+nmap <Leader>a :Ag<Space>
+
+
 " }}}
 
 " {{{ Autocommands
@@ -263,42 +241,13 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-" YouCompleteMe
-"let g:ycm_min_num_of_chars_for_completion = 100
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-
-
-" PHP Actor
-"autocmd FileType php setlocal omnifunc=phpactor#Complete
-"let g:phpactorOmniError = v:true
-
 " SuperTab & omni completion
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-" SuperTab & ycm completion
-"let g:SuperTabDefaultCompletionType = '<C-n>' 
 
 " Remember last location in file
 if has("autocmd")
   au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal g'\"" | endif
 endif
-
-" }}}
-
-" {{{ Ondra updates
-
-" higlight search
-:set hlsearch
-
-" horizontal split styling
-:set t_Co=1024
-let g:airline_theme='sol'
-let g:airline_extensions = []
-
-" nerdtree color
-:hi Directory guifg=#FF0000 ctermfg=red
-
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
 
 " }}}
