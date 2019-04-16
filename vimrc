@@ -25,9 +25,9 @@ Plugin 'tpope/vim-surround.git'
 Plugin 'elzr/vim-json.git'
 Plugin 'tobyS/vmustache'
 Plugin 'tobyS/pdv'
-"Plugin 'w0rp/ale'
+"Plugin 'w0rp/ale' "immediate syntax checking
 "Plugin 'alvan/vim-closetag'
-Plugin 'tmhedberg/matchit'
+Plugin 'tmhedberg/matchit' "jump between html open-close tag
 Plugin 'shawncplus/phpcomplete.vim'
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'phpactor/phpactor'
