@@ -100,6 +100,9 @@ set tags=tags;
 " fix for slow vim, syntax
 set synmaxcol=1000
 
+" enable mouse
+set mouse=a
+
 " }}}
 
 " {{{ Colors
@@ -187,9 +190,9 @@ map <Leader>qf :%!phpcbf --standard=psr2<CR>
 map <Leader>d :call pdv#DocumentCurrentLine()<CR>
 
 " Js Beauty
-map <Leader>fj :call JsBeautify()<CR>
-map <Leader>fc :call CSSBeautify()<CR>
-map <Leader>fh :call HtmlBeautify()<CR>
+map <Leader>bj :call JsBeautify()<CR>
+map <Leader>bc :call CSSBeautify()<CR>
+map <Leader>bh :call HtmlBeautify()<CR>
 
 " Tabs
 map th :tabfirst<CR>
