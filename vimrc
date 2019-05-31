@@ -37,6 +37,8 @@ Plugin 'shawncplus/phpcomplete.vim'
 "Plugin 'phpactor/ncm2-phpactor'
 Plugin 'ervandew/supertab'
 Plugin 'mattn/emmet-vim' "html plugin
+"Plugin 'arnaud-lb/vim-php-namespace'
+"Plugin 'ludovicchabant/vim-gutentags.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -147,8 +149,8 @@ au BufNewFile,BufRead *.ctp set filetype=php
 " make uses real tabs
 au FileType make setl noexpandtab
 
-" Make ruby,scss,sass use 1 spaces for indentation.
-au FileType {yaml,sass,scss,ruby,eruby,less,css,javascript} setl softtabstop=2 shiftwidth=2 tabstop=2 expandtab colorcolumn=80
+" Make ruby,scss,sass use 2 spaces for indentation.
+au FileType {yaml,sass,scss,ruby,eruby,less,css,javascript,json} setl softtabstop=2 shiftwidth=2 tabstop=2 expandtab colorcolumn=80
 
 " php settings
 au FileType php setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandtab colorcolumn=120
@@ -172,10 +174,10 @@ imap <C-j> <Down>
 imap <C-k> <Up>
 
 " Leader mapping
-map <Leader>h :nohl<CR>
-map <Leader>p :set paste!<BAR>:set paste?<CR>
-map <Leader>n :call NumberToggle()<CR>
-map <Leader>a <C-w><C-]><C-w>T
+"map <Leader>h :nohl<CR>
+"map <Leader>p :set paste!<BAR>:set paste?<CR>
+"map <Leader>n :call NumberToggle()<CR>
+"map <Leader>a <C-w><C-]><C-w>T
 
 " NERDTree
 map <Leader>t :NERDTreeToggle<CR>
@@ -210,6 +212,14 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs = 0
 let g:syntastic_enable_balloons = 0
 
+" Syntastic configuration for Sass
+let g:syntastic_sass_checkers = ['scss_lint']
+let g:syntastic_scss_checkers = ['scss_lint']
+"let g:syntastic_scss_sass_lint_exec = 'sass-lint'
+"let g:syntastic_scss_sass_lint_args = ''
+let g:syntastic_scss_scss_lint_exec = 'scss-lint'
+let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector'
+
 " Syntastic configuration for PHP
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
 let g:syntastic_php_phpcs_exec = './bin/phpcs'
@@ -230,18 +240,23 @@ nmap <Leader>f :Files<CR>
 nmap <Leader>F :GFiles<CR>
 " ag search over fzf
 nmap <Leader>a :Ag<Space>
+" vim-php-namespaces TODO: needs ctags generator (gutentags) 
+"noremap <Leader>u :call PhpInsertUse()<CR>
+"inoremap <Leader>u <C-O>:call PhpExpandClass()<CR>
 
+"set statusline+=%{gutentags#statusline()}
 
 " }}}
 
 " {{{ Autocommands
 
-" PHP compplete
 " Enable omni completion.
 autocmd FileType css,less,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" PHP compplete
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " SuperTab & omni completion
