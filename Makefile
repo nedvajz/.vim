@@ -3,15 +3,15 @@
 #
 help:
 	@echo "init    - Init .vimrc & Vundle."
-	@echo "install - Vundle install plugins."
-	@echo "update  - Vundle update plugins."
+	@echo "install - vim-plug install plugins."
+	@echo "update  - vim-plug update plugins."
 
 init:
 	ln -sf ~/.vim/vimrc ~/.vimrc
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 install:
-	vim +PluginInstall +PluginClean! +qall
+	vim +PlugInstall +PlugClean! +qall
 
 update:
-	vim +PluginUpdate +qall
+	vim +PlugUpdate +qall

@@ -3,46 +3,45 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Vim Plug (vim-plug)
+call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'einars/js-beautify'
-"Plugin 'joonty/vim-phpqa.git'
-Plugin 'vim-syntastic/syntastic'
-"Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'junegunn/fzf.vim'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'rking/ag.vim.git'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-surround.git'
-Plugin 'elzr/vim-json.git'
-Plugin 'tobyS/vmustache'
-Plugin 'tobyS/pdv'
-"Plugin 'w0rp/ale' "immediate syntax checking
-"Plugin 'alvan/vim-closetag'
-Plugin 'tmhedberg/matchit' "jump between html open-close tag
-Plugin 'shawncplus/phpcomplete.vim'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'phpactor/phpactor'
-"Plugin 'ncm2/ncm2'
-"Plugin 'roxma/nvim-yarp'
-"Plugin 'phpactor/ncm2-phpactor'
-Plugin 'ervandew/supertab'
-Plugin 'mattn/emmet-vim' "html plugin
-"Plugin 'arnaud-lb/vim-php-namespace'
-"Plugin 'ludovicchabant/vim-gutentags.git'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'einars/js-beautify'
+"Plug 'joonty/vim-phpqa.git'
+Plug 'vim-syntastic/syntastic'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'elzr/vim-json'
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+"Plug 'w0rp/ale' "immediate syntax checking
+"Plug 'alvan/vim-closetag'
+Plug 'tmhedberg/matchit' "jump between html open-close tag
+Plug 'shawncplus/phpcomplete.vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'phpactor/phpactor'
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+"Plug 'phpactor/ncm2-phpactor'
+Plug 'ervandew/supertab'
+"Plug 'mattn/emmet-vim' "html plugin
+"Plug 'arnaud-lb/vim-php-namespace'
+"Plug 'craigemery/vim-autotag'
+"Plug 'ludovicchabant/vim-gutentags.git'
+Plug 'jiangmiao/auto-pairs'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 " }}}
 
@@ -97,7 +96,7 @@ set undofile
 set undodir=~/.vim/undo
 
 " ctags optimization
-set tags=tags;
+"set tags=tags;
 
 " fix for slow vim, syntax
 set synmaxcol=1000
@@ -139,6 +138,10 @@ let g:airline_extensions = []
 
 "
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
+
+" Gutentags
+"set statusline+=%{gutentags#statusline()}
+
 " }}}
 
 " {{{ Filetypes
@@ -157,6 +160,14 @@ au FileType php setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandta
 
 " Javascript settings
 "au FileType javascript setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandtab colorcolumn=120
+
+"sparkup
+augroup sparkup_types
+  " Remove ALL autocommands of the current group.
+  autocmd!
+  " Add sparkup to new filetypes
+  autocmd FileType mustache,php,javascript,jsx runtime! ftplugin/html/sparkup.vim
+augroup END
 
 " }}}
 
@@ -218,7 +229,7 @@ let g:syntastic_scss_checkers = ['scss_lint']
 "let g:syntastic_scss_sass_lint_exec = 'sass-lint'
 "let g:syntastic_scss_sass_lint_args = ''
 let g:syntastic_scss_scss_lint_exec = 'scss-lint'
-let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector'
+let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector,PropertySortOrder,PlaceholderInExtend'
 
 " Syntastic configuration for PHP
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
