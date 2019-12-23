@@ -12,7 +12,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'einars/js-beautify'
 "Plug 'joonty/vim-phpqa.git'
 Plug 'vim-syntastic/syntastic'
-"Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'rking/ag.vim'
@@ -25,7 +24,7 @@ Plug 'tobyS/pdv'
 "Plug 'w0rp/ale' "immediate syntax checking
 "Plug 'alvan/vim-closetag'
 Plug 'tmhedberg/matchit' "jump between html open-close tag
-Plug 'shawncplus/phpcomplete.vim'
+"Plug 'shawncplus/phpcomplete.vim'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'phpactor/phpactor'
 "Plug 'ncm2/ncm2'
@@ -35,10 +34,15 @@ Plug 'ervandew/supertab'
 "Plug 'mattn/emmet-vim' "html plugin
 "Plug 'arnaud-lb/vim-php-namespace'
 "Plug 'craigemery/vim-autotag'
-"Plug 'ludovicchabant/vim-gutentags.git'
-Plug 'jiangmiao/auto-pairs'
+Plug 'ludovicchabant/vim-gutentags'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -141,6 +145,9 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
 
 " Gutentags
 "set statusline+=%{gutentags#statusline()}
+
+" Auto Pairs
+let g:AutoPairsShortcutToggle = '<p>'
 
 " }}}
 
@@ -251,11 +258,9 @@ nmap <Leader>f :Files<CR>
 nmap <Leader>F :GFiles<CR>
 " ag search over fzf
 nmap <Leader>a :Ag<Space>
-" vim-php-namespaces TODO: needs ctags generator (gutentags) 
-"noremap <Leader>u :call PhpInsertUse()<CR>
-"inoremap <Leader>u <C-O>:call PhpExpandClass()<CR>
 
-"set statusline+=%{gutentags#statusline()}
+" Gutentags
+set statusline+=%{gutentags#statusline()}
 
 " }}}
 
@@ -268,7 +273,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " PHP compplete
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+"autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
 " SuperTab & omni completion
 let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
