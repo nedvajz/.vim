@@ -2,7 +2,7 @@
 #
 #
 help:
-	@echo "init    - Init .vimrc & Vundle."
+	@echo "init    - Init .vimrc & vim-plug."
 	@echo "install - vim-plug install plugins."
 	@echo "update  - vim-plug update plugins."
 
