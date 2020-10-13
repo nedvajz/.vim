@@ -34,6 +34,7 @@ Plug 'nelsyeung/twig.vim'
 "Install Consolas NF from https://github.com/Znuff/consolas-powerline
 "Set 'Consolas NF' in WindowsTerminal/Putty ..
 Plug 'ryanoasis/vim-devicons' 
+Plug 'lambdalisue/glyph-palette.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Deprecated
@@ -144,7 +145,14 @@ let g:airline_theme='sol'
 let g:airline_extensions = []
 
 " nerdtree color
-:hi Directory guifg=#FF0000 ctermfg=red
+:hi Directory guifg=#FF0000 ctermfg=148 "https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim 
+
+" devicons
+augroup my-glyph-palette
+	autocmd! *
+	autocmd FileType fern call glyph_palette#apply()
+	autocmd FileType nerdtree,startify call glyph_palette#apply()
+augroup END
 
 "
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
