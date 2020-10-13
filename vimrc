@@ -10,7 +10,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'einars/js-beautify'
-"Plug 'joonty/vim-phpqa.git'
 Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/fzf.vim'
 Plug 'maksimr/vim-jsbeautify'
@@ -21,28 +20,50 @@ Plug 'tpope/vim-surround'
 Plug 'elzr/vim-json'
 Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
+Plug 'tmhedberg/matchit' "jump between html open-close tag
+Plug 'ervandew/supertab'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php linter
+Plug 'nelsyeung/twig.vim'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['php', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+" Deprecated
+"Plug 'joonty/vim-phpqa.git'
+"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
 "Plug 'w0rp/ale' "immediate syntax checking
 "Plug 'alvan/vim-closetag'
-Plug 'tmhedberg/matchit' "jump between html open-close tag
+"Plug 'shawncplus/phpcomplete.vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'joonty/vim-phpqa.git'
+"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
+"Plug 'w0rp/ale' "immediate syntax checking
+"Plug 'alvan/vim-closetag'
 "Plug 'shawncplus/phpcomplete.vim'
 "Plug 'Valloric/YouCompleteMe'
 "Plug 'phpactor/phpactor'
 "Plug 'ncm2/ncm2'
 "Plug 'roxma/nvim-yarp'
 "Plug 'phpactor/ncm2-phpactor'
-Plug 'ervandew/supertab'
 "Plug 'mattn/emmet-vim' "html plugin
 "Plug 'arnaud-lb/vim-php-namespace'
 "Plug 'craigemery/vim-autotag'
-Plug 'ludovicchabant/vim-gutentags'
 "Plug 'jiangmiao/auto-pairs'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " color highlighting
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " color highlighting
+"Plug 'phpactor/phpactor'
+"Plug 'ncm2/ncm2'
+"Plug 'roxma/nvim-yarp'
+"Plug 'phpactor/ncm2-phpactor'
+"Plug 'mattn/emmet-vim' "html plugin
+"Plug 'arnaud-lb/vim-php-namespace'
+"Plug 'craigemery/vim-autotag'
+"Plug 'jiangmiao/auto-pairs'
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -271,6 +292,7 @@ autocmd FileType css,less,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 " PHP compplete
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
