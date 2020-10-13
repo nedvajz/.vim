@@ -14,8 +14,8 @@ Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/fzf.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
+Plug 'preservim/nerdtree'
+Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'elzr/vim-json'
 Plug 'tobyS/vmustache'
@@ -31,39 +31,24 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color 
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php linter
 Plug 'nelsyeung/twig.vim'
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
-  \ 'for': ['php', 'javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+"Install Consolas NF from https://github.com/Znuff/consolas-powerline
+"Set 'Consolas NF' in WindowsTerminal/Putty ..
+Plug 'ryanoasis/vim-devicons' 
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Deprecated
-"Plug 'joonty/vim-phpqa.git'
-"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
-"Plug 'w0rp/ale' "immediate syntax checking
 "Plug 'alvan/vim-closetag'
-"Plug 'shawncplus/phpcomplete.vim'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'joonty/vim-phpqa.git'
-"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
-"Plug 'w0rp/ale' "immediate syntax checking
-"Plug 'alvan/vim-closetag'
-"Plug 'shawncplus/phpcomplete.vim'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'phpactor/phpactor'
-"Plug 'ncm2/ncm2'
-"Plug 'roxma/nvim-yarp'
-"Plug 'phpactor/ncm2-phpactor'
-"Plug 'mattn/emmet-vim' "html plugin
 "Plug 'arnaud-lb/vim-php-namespace'
 "Plug 'craigemery/vim-autotag'
 "Plug 'jiangmiao/auto-pairs'
-"Plug 'phpactor/phpactor'
-"Plug 'ncm2/ncm2'
-"Plug 'roxma/nvim-yarp'
-"Plug 'phpactor/ncm2-phpactor'
+"Plug 'joonty/vim-phpqa.git'
 "Plug 'mattn/emmet-vim' "html plugin
-"Plug 'arnaud-lb/vim-php-namespace'
-"Plug 'craigemery/vim-autotag'
-"Plug 'jiangmiao/auto-pairs'
+"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
+"Plug 'phpactor/phpactor'
+"Plug 'roxma/nvim-yarp'
+"Plug 'shawncplus/phpcomplete.vim'
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'w0rp/ale' "immediate syntax checking
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -223,6 +208,9 @@ map <Leader>t :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
+
+" Prettier
+let g:prettier#config#config_precedence = 'file-override'
 
 " PHP QA
 map <Leader>qf :%!phpcbf --standard=psr2<CR>
