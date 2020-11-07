@@ -1,0 +1,15 @@
+{
+  "html.filetypes": ["html", "handlebars", "ctp"],
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  "html.format.indentInnerHtml": true,
+  "html.enable": true,
+  "html.suggest.html5": true,
+  "emmet.includeLanguages": {
+    "php": "html"
+  },
+  "emmet.showExpandedAbbreviation": "always",
+  "emmet.syntaxProfiles": {
+    "php": "html"
+  }
+}
