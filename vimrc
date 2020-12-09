@@ -11,7 +11,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'einars/js-beautify'
 Plug 'vim-syntastic/syntastic'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', {'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b'}
 Plug 'maksimr/vim-jsbeautify'
 Plug 'rking/ag.vim'
 Plug 'preservim/nerdtree'
@@ -36,6 +36,7 @@ Plug 'nelsyeung/twig.vim'
 "Set 'Consolas NF' in WindowsTerminal/Putty ..
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
+Plug 'roxma/vim-paste-easy'
 
 " Deprecated
 "Plug 'alvan/vim-closetag'
@@ -158,7 +159,8 @@ augroup END
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
 
 " Gutentags
-"set statusline+=%{gutentags#statusline()}
+set statusline+=%{gutentags#statusline()}
+" ctags -R -f './tags'  --exclude='.git' --exclude='.sass-cache' --exclude='tmp' --exclude='.bundle' --exclude='*.min.*' --exclude='tags' --exclude='node_modules' --exclude='bower_components' --exclude='vendor' --exclude='*.jpg' --exclude='*.png' --exclude='*.svg' --exclude='*.ico' --exclude='*.pdf' --exclude='*.epub' ./';
 
 " Auto Pairs
 let g:AutoPairsShortcutToggle = '<p>'
