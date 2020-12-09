@@ -36,6 +36,7 @@ Plug 'nelsyeung/twig.vim'
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'roxma/vim-paste-easy'
 
 " Deprecated
 "Plug 'alvan/vim-closetag'
