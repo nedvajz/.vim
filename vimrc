@@ -159,7 +159,8 @@ augroup END
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
 
 " Gutentags
-"set statusline+=%{gutentags#statusline()}
+set statusline+=%{gutentags#statusline()}
+" ctags -R -f './tags'  --exclude='.git' --exclude='.sass-cache' --exclude='tmp' --exclude='.bundle' --exclude='*.min.*' --exclude='tags' --exclude='node_modules' --exclude='bower_components' --exclude='vendor' --exclude='*.jpg' --exclude='*.png' --exclude='*.svg' --exclude='*.ico' --exclude='*.pdf' --exclude='*.epub' ./';
 
 " Auto Pairs
 let g:AutoPairsShortcutToggle = '<p>'
