@@ -11,7 +11,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'einars/js-beautify'
 Plug 'vim-syntastic/syntastic'
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', {'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b'}
 Plug 'maksimr/vim-jsbeautify'
 Plug 'rking/ag.vim'
 Plug 'preservim/nerdtree'
