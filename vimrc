@@ -116,6 +116,9 @@ set synmaxcol=1000
 " enable mouse
 set mouse=a
 
+" backup copy related to https://stackoverflow.com/a/55435197/2686510
+set backupcopy=yes
+
 " }}}
 
 " {{{ Colors
