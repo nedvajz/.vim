@@ -175,6 +175,9 @@ let g:AutoPairsShortcutToggle = '<p>'
 " Cakephp ctp as php file
 au BufNewFile,BufRead *.ctp set filetype=php
 
+" Cakephp twig as html file
+au BufNewFile,BufRead *.ctp set filetype=html
+
 " make uses real tabs
 au FileType make setl noexpandtab
 
