@@ -30,13 +30,17 @@ Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and st
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
 Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php linter
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " vscode snippets
+Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'} " language server https://github.com/iamcco/coc-vimlsp
 Plug 'nelsyeung/twig.vim'
-"Install Consolas NF from https://github.com/Znuff/consolas-powerline
-"Set 'Consolas NF' in WindowsTerminal/Putty ..
+"Devicons: Install Consolas NF from https://github.com/Znuff/consolas-powerline
+"Devicons: Set 'Consolas NF' in WindowsTerminal/Putty ..
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'roxma/vim-paste-easy'
+"express.js jade/pug syntax
+Plug 'digitaltoad/vim-pug' 
 
 " Deprecated
 "Plug 'alvan/vim-closetag'
@@ -115,6 +119,13 @@ set synmaxcol=1000
 
 " enable mouse
 set mouse=a
+
+" performance 
+set regexpengine=1
+syntax sync minlines=64  " faster syntax hl
+
+" backup - due parcel & gulp updates on save
+set backupcopy=yes
 
 " }}}
 
@@ -255,7 +266,7 @@ let g:syntastic_scss_checkers = ['scss_lint']
 "let g:syntastic_scss_sass_lint_exec = 'sass-lint'
 "let g:syntastic_scss_sass_lint_args = ''
 let g:syntastic_scss_scss_lint_exec = 'scss-lint'
-let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector,PropertySortOrder,PlaceholderInExtend'
+let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector,PropertySortOrder,PlaceholderInExtend,ZeroUnit,LeadingZero,StringQuotes'
 
 " Syntastic configuration for PHP
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
