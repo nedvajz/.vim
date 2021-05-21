@@ -13,6 +13,7 @@ init:
 	sudo npm i intelephense -g
 	sudo npm i -g prettier @prettier/plugin-php
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install
+	sudo npm i -g eslint eslint-plugin-vue -D
 
 install:
 	vim +PlugInstall +PlugClean! +qall

@@ -32,12 +32,12 @@ Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php linter
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " vscode snippets
 Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'} " language server https://github.com/iamcco/coc-vimlsp
+Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nelsyeung/twig.vim'
 "Devicons: Install Consolas NF from https://github.com/Znuff/consolas-powerline
 "Devicons: Set 'Consolas NF' in WindowsTerminal/Putty ..
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'roxma/vim-paste-easy'
 "express.js jade/pug syntax
 Plug 'digitaltoad/vim-pug' 
@@ -124,7 +124,7 @@ set mouse=a
 set regexpengine=1
 syntax sync minlines=64  " faster syntax hl
 
-" backup - due parcel & gulp updates on save
+" backup copy related to https://stackoverflow.com/a/55435197/2686510
 set backupcopy=yes
 
 " }}}
@@ -183,11 +183,14 @@ let g:AutoPairsShortcutToggle = '<p>'
 " Cakephp ctp as php file
 au BufNewFile,BufRead *.ctp set filetype=php
 
+" Cakephp twig as html file
+au BufNewFile,BufRead *.ctp set filetype=html
+
 " make uses real tabs
 au FileType make setl noexpandtab
 
 " Make ruby,scss,sass use 2 spaces for indentation.
-au FileType {yaml,sass,scss,ruby,eruby,less,css,javascript,json} setl softtabstop=2 shiftwidth=2 tabstop=2 expandtab colorcolumn=80
+au FileType {yaml,sass,scss,ruby,eruby,less,css,javascript,json,vue} setl softtabstop=2 shiftwidth=2 tabstop=2 expandtab colorcolumn=80
 
 " php settings
 au FileType php setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandtab colorcolumn=120
@@ -230,8 +233,11 @@ map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
 
-" Prettier
-let g:prettier#config#config_precedence = 'file-override'
+" Coc Prettier
+"let g:prettier#config#config_precedence = 'file-override'
+vmap <leader>p  :Prettier<CR>
+nmap <leader>p  :Prettier<CR>
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " PHP QA
 map <Leader>qf :%!phpcbf --standard=psr2<CR>
@@ -277,9 +283,9 @@ let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,u
 
 " see :h syntastic-loclist-callback
 function! SyntasticCheckHook(errors)
-    if !empty(a:errors)
-        let g:syntastic_loc_list_height = min([len(a:errors), 10])
-    endif
+	if !empty(a:errors)
+		let g:syntastic_loc_list_height = min([len(a:errors), 10])
+	endif
 endfunction
 
 " Fuzzy Finder
@@ -311,8 +317,8 @@ let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 
 " Remember last location in file
 if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal g'\"" | endif
+	au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+				\| exe "normal g'\"" | endif
 endif
 
 " }}}
