@@ -1,9 +1,10 @@
 {
-  "html.filetypes": ["html", "handlebars", "ctp"],
+  "html.filetypes": ["html", "handlebars", "ctp", "twig", "html.twig"],
   "html.validate.scripts": true,
   "html.validate.styles": true,
   "html.autoClosingTags": true,
   "html.format.indentInnerHtml": true,
+  "html.format.enable": true,
   "html.enable": true,
   "html.suggest.html5": true,
   "prettier.useTabs": false,

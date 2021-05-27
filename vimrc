@@ -37,6 +37,7 @@ Plug 'nelsyeung/twig.vim'
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'roxma/vim-paste-easy'
+Plug 'nelsyeung/twig.vim'
 
 " Deprecated
 "Plug 'alvan/vim-closetag'
@@ -159,7 +160,7 @@ augroup my-glyph-palette
 augroup END
 
 "
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp,*.twig'
 
 " Gutentags
 set statusline+=%{gutentags#statusline()}
@@ -230,6 +231,15 @@ let g:NERDTreeDirArrowCollapsible = '-'
 vmap <leader>p  :Prettier<CR>
 nmap <leader>p  :Prettier<CR>
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
+
+" Coc - does not work but keep for reference
+"let g:coc_filetype_map = {
+"\ 'html.twig': 'html',
+"\ 'twig': 'html',
+"\ }
+
+" Twig plugin
+let g:neosnippet#snippets_directory='~/.vim/bundle/twig.vim/neosnippets'
 
 " PHP QA
 map <Leader>qf :%!phpcbf --standard=psr2<CR>
