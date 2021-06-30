@@ -31,18 +31,6 @@ Plug 'lambdalisue/glyph-palette.vim'
 Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
 
-"Plug 'einars/js-beautify'
-"Plug 'vim-syntastic/syntastic'
-"Plug 'maksimr/vim-jsbeautify'
-
-" Deprecated
-"Plug 'jiangmiao/auto-pairs'
-"Plug 'phpactor/phpactor'
-"Plug 'roxma/nvim-yarp'
-"Plug 'roxma/vim-paste-easy' # Screws macros 
-"Plug 'rstacruz/sparkup', {'rtp': 'vim/'} # emmet like but no more maintained
-"Plug 'mattn/emmet-vim' "html plugin
-
 " All of your Plugins must be added before the following line
 call plug#end()
 
@@ -149,9 +137,6 @@ augroup END
 set statusline+=%{gutentags#statusline()}
 " ctags -R -f './tags'  --exclude='.git' --exclude='.sass-cache' --exclude='tmp' --exclude='.bundle' --exclude='*.min.*' --exclude='tags' --exclude='node_modules' --exclude='bower_components' --exclude='vendor' --exclude='*.jpg' --exclude='*.png' --exclude='*.svg' --exclude='*.ico' --exclude='*.pdf' --exclude='*.epub' ./';
 
-" Auto Pairs
-let g:AutoPairsShortcutToggle = '<p>'
-
 " Ale
 map <Leader>f :ALEFix<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
@@ -205,22 +190,11 @@ au BufNewFile,BufRead *.twig set filetype=html
 " make uses real tabs
 au FileType make setl noexpandtab
 
-" Make ruby,scss,sass use 2 spaces for indentation.
+" Make ruby,scss,sass,javascript,json,vue  use 2 spaces for indentation.
 au FileType {yaml,sass,scss,ruby,eruby,less,css,javascript,json,vue} setl softtabstop=2 shiftwidth=2 tabstop=2 expandtab colorcolumn=80
 
 " php settings
 au FileType php setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandtab colorcolumn=120
-
-" Javascript settings
-"au FileType javascript setl textwidth=120 softtabstop=4 shiftwidth=4 tabstop=4 expandtab colorcolumn=120
-
-"sparkup
-augroup sparkup_types
-  " Remove ALL autocommands of the current group.
-  autocmd!
-  " Add sparkup to new filetypes
-  autocmd FileType mustache,php,javascript,jsx runtime! ftplugin/html/sparkup.vim
-augroup END
 
 " }}}
 
@@ -239,7 +213,7 @@ imap jj <Esc>
 
 " Leader mapping
 "map <Leader>h :nohl<CR>
-"map <Leader>p :set paste!<BAR>:set paste?<CR>
+map <Leader>p :set paste!<BAR>:set paste?<CR>
 "map <Leader>n :call NumberToggle()<CR>
 "map <Leader>a <C-w><C-]><C-w>T
 
@@ -248,12 +222,6 @@ map <Leader>t :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-
-" Coc - does not work but keep for reference
-"let g:coc_filetype_map = {
-"\ 'html.twig': 'html',
-"\ 'twig': 'html',
-"\ }
 
 " Twig plugin
 let g:neosnippet#snippets_directory='~/.vim/bundle/twig.vim/neosnippets'
@@ -264,11 +232,6 @@ map <Leader>qf :%!phpcbf --standard=psr2<CR>
 " PDV settings
 map <Leader>d :call pdv#DocumentCurrentLine()<CR>
 
-" Js Beauty
-map <Leader>bj :call JsBeautify()<CR>
-map <Leader>bc :call CSSBeautify()<CR>
-map <Leader>bh :call HtmlBeautify()<CR>
-
 " Tabs
 map th :tabfirst<CR>
 map tj :tabnext<CR>
@@ -277,45 +240,13 @@ map tl :tablast<CR>
 map tn :tabnew<CR>
 map tc :tabclose<CR>
 
-" Syntastic configuration
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs = 0
-let g:syntastic_enable_balloons = 0
-
-" Syntastic configuration for Sass
-let g:syntastic_sass_checkers = ['scss_lint']
-let g:syntastic_scss_checkers = ['scss_lint']
-"let g:syntastic_scss_sass_lint_exec = 'sass-lint'
-"let g:syntastic_scss_sass_lint_args = ''
-let g:syntastic_scss_scss_lint_exec = 'scss-lint'
-let g:syntastic_scss_scss_lint_args = '-x QualifyingElement,ImportantRule,ColorVariable,Indentation,SelectorDepth,NestingDepth,MergeableSelector,PropertySortOrder,PlaceholderInExtend,ZeroUnit,LeadingZero,StringQuotes'
-
-" Syntastic configuration for PHP
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_php_phpcs_exec = './bin/phpcs'
-let g:syntastic_php_phpcs_args = '--standard=psr2'
-let g:syntastic_php_phpmd_exec = './bin/phpmd'
-let g:syntastic_php_phpmd_post_args = 'cleancode,codesize,controversial,design,unusedcode'
-
-" see :h syntastic-loclist-callback
-function! SyntasticCheckHook(errors)
-	if !empty(a:errors)
-		let g:syntastic_loc_list_height = min([len(a:errors), 10])
-	endif
-endfunction
-
 " Fuzzy Finder
 set rtp+=~/.fzf
 nmap <Leader>f :Files<CR>
 nmap <Leader>F :GFiles<CR>
+
 " ag search over fzf
 nmap <Leader>a :Ag<Space>
-
-" Gutentags
-set statusline+=%{gutentags#statusline()}
 
 " }}}
 
