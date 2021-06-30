@@ -9,53 +9,39 @@ call plug#begin('~/.vim/plugged')
 " Plugins
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'einars/js-beautify'
-Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/fzf.vim', {'commit': '4145f53f3d343c389ff974b1f1a68eeb39fba18b'}
-Plug 'maksimr/vim-jsbeautify'
 Plug 'rking/ag.vim'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'tpope/vim-surround'
 Plug 'elzr/vim-json'
-Plug 'tobyS/vmustache'
-Plug 'tobyS/pdv'
 Plug 'tmhedberg/matchit' "jump between html open-close tag
 Plug 'ervandew/supertab'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'} " mru and stuff
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'} " color highlighting
-Plug 'neoclide/coc-html', {'do': 'yarn install --frozen-lockfile'} " html
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'} " php linter
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'} " vscode snippets
-Plug 'iamcco/coc-vimlsp', {'do': 'yarn install --frozen-lockfile'} " language server https://github.com/iamcco/coc-vimlsp
-Plug 'neoclide/coc-prettier', {'do': 'yarn install --frozen-lockfile'}
 Plug 'nelsyeung/twig.vim'
+Plug 'dense-analysis/ale'
+
 "Devicons: Install Consolas NF from https://github.com/Znuff/consolas-powerline
 "Devicons: Set 'Consolas NF' in WindowsTerminal/Putty ..
 Plug 'ryanoasis/vim-devicons' 
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'roxma/vim-paste-easy'
-"express.js jade/pug syntax
-Plug 'nelsyeung/twig.vim'
-Plug 'digitaltoad/vim-pug' 
+
+" Comments with templates
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+
+"Plug 'einars/js-beautify'
+"Plug 'vim-syntastic/syntastic'
+"Plug 'maksimr/vim-jsbeautify'
 
 " Deprecated
-"Plug 'alvan/vim-closetag'
-"Plug 'arnaud-lb/vim-php-namespace'
-"Plug 'craigemery/vim-autotag'
 "Plug 'jiangmiao/auto-pairs'
-"Plug 'joonty/vim-phpqa.git'
-"Plug 'mattn/emmet-vim' "html plugin
-"Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'} " emmet ul>li>span
 "Plug 'phpactor/phpactor'
 "Plug 'roxma/nvim-yarp'
-"Plug 'shawncplus/phpcomplete.vim'
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'w0rp/ale' "immediate syntax checking
+"Plug 'roxma/vim-paste-easy' # Screws macros 
+"Plug 'rstacruz/sparkup', {'rtp': 'vim/'} # emmet like but no more maintained
+"Plug 'mattn/emmet-vim' "html plugin
 
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -138,14 +124,6 @@ set background=dark
 
 " {{{ Plugins config
 
-" PHP QA
-let g:phpqa_messdetector_autorun = 0
-
-" PHP Code Sniffer binary
-let g:phpqa_codesniffer_autorun = 0
-let g:phpqa_codesniffer_args = "--standard=CakePHP"
-let g:phpqa_codesniffer_cmd = '/home/ondra/.composer/vendor/bin/phpcs'
-
 " PDV settings
 let g:pdv_template_dir = "/home/ondra/.vim/pdv-templates"
 
@@ -167,15 +145,52 @@ augroup my-glyph-palette
 	autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
 
-"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php,*.ctp,*.twig'
-
 " Gutentags
 set statusline+=%{gutentags#statusline()}
 " ctags -R -f './tags'  --exclude='.git' --exclude='.sass-cache' --exclude='tmp' --exclude='.bundle' --exclude='*.min.*' --exclude='tags' --exclude='node_modules' --exclude='bower_components' --exclude='vendor' --exclude='*.jpg' --exclude='*.png' --exclude='*.svg' --exclude='*.ico' --exclude='*.pdf' --exclude='*.epub' ./';
 
 " Auto Pairs
 let g:AutoPairsShortcutToggle = '<p>'
+
+" Ale
+map <Leader>f :ALEFix<CR>
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'php': ['php -l'],
+\}
+let g:ale_fixers = {
+\   'javascript': ['prettier'],
+\   'json': ['prettier'],
+\   'yaml': ['prettier'],
+\   'css': ['prettier'],
+\   'scss': ['prettier'],
+\   'less': ['prettier'],
+\   'html': ['prettier'],
+\   'php': ['prettier'],
+\}
+let g:ale_fix_on_save = 1
+
+"https://github.com/neoclide/coc.nvim/issues/560#issuecomment-578629707
+let g:coc_global_extensions = [
+   \'coc-json',
+   \'coc-emmet',
+   \'coc-lists',
+   \'coc-highlight',
+   \'coc-html',
+   \'coc-htmlhint',
+   \'coc-markdownlint',
+   \'coc-html-css-support',
+   \'coc-phpls',
+   \'coc-snippets',
+   \'coc-vimlsp',
+   \'coc-json',
+   \'coc-css',
+   \'coc-cssmodules',
+   \'coc-swagger',
+   \'coc-yaml',
+   \'coc-git'
+\]
 
 " }}}
 
@@ -217,10 +232,10 @@ let mapleader = ','
 imap jj <Esc>
 
 " OmniComplete
-imap <C-@> <C-Space>
-imap <C-Space> <C-x><C-o>
-imap <C-j> <Down>
-imap <C-k> <Up>
+"imap <C-@> <C-Space>
+"imap <C-Space> <C-x><C-o>
+"imap <C-j> <Down>
+"imap <C-k> <Up>
 
 " Leader mapping
 "map <Leader>h :nohl<CR>
@@ -233,12 +248,6 @@ map <Leader>t :NERDTreeToggle<CR>
 map <F2> :NERDTreeToggle<CR>
 let g:NERDTreeDirArrowExpandable = '+'
 let g:NERDTreeDirArrowCollapsible = '-'
-
-" Coc Prettier
-"let g:prettier#config#config_precedence = 'file-override'
-vmap <leader>p  :Prettier<CR>
-nmap <leader>p  :Prettier<CR>
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
 " Coc - does not work but keep for reference
 "let g:coc_filetype_map = {
@@ -313,8 +322,8 @@ set statusline+=%{gutentags#statusline()}
 " {{{ Autocommands
 
 " Enable omni completion.
-autocmd FileType css,less,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType css,less,sass,scss setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType json syntax match Comment +\/\/.\+$+
