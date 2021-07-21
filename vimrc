@@ -21,6 +21,7 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'nelsyeung/twig.vim'
 Plug 'dense-analysis/ale'
+Plug 'posva/vim-vue'
 
 "Devicons: Install Consolas NF from https://github.com/Znuff/consolas-powerline
 "Devicons: Set 'Consolas NF' in WindowsTerminal/Putty ..
@@ -94,6 +95,12 @@ set synmaxcol=1000
 
 " enable mouse
 set mouse=a
+set ttymouse=xterm2
+
+" zoom a vim pane, <C-w>= to re-balance
+nnoremap <leader>- :wincmd _<cr>:wincmd \|<cr>
+nnoremap <leader>= :wincmd =<cr>
+
 
 " performance 
 set regexpengine=1
@@ -153,6 +160,7 @@ let g:ale_fixers = {
 \   'less': ['prettier'],
 \   'html': ['prettier'],
 \   'php': ['prettier'],
+\   'vue': ['prettier'],
 \}
 let g:ale_fix_on_save = 1
 
@@ -262,8 +270,9 @@ autocmd FileType json syntax match Comment +\/\/.\+$+
 " PHP compplete
 "autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 
-" SuperTab & omni completion
-let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" superTab & omni completion
+"let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Remember last location in file
 if has("autocmd")
